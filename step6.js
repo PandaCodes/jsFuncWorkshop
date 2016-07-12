@@ -1,11 +1,9 @@
 function countWords(inputWords) {
-  return inputWords.reduce(function(stringNumbersObject, str) {
-    if (stringNumbersObject.hasOwnProperty(str)) {
-      stringNumbersObject[str]++;
-    } else {
-      stringNumbersObject[str] = 1;
-    }
-  }, new Object());
+  return inputWords.reduce((wordCountMap, str) => {
+    const tmp = {};
+    tmp[str] = wordCountMap[str] + 1 || 1;
+    return Object.assign(wordCountMap, tmp);
+  }, {});
 }
-    
-module.exports = countWords
+
+module.exports = countWords;
